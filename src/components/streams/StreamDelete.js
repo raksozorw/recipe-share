@@ -8,17 +8,29 @@ import { Link } from 'react-router-dom';
 class StreamDelete extends React.Component {
 
     componentDidMount() {
-this.props.fetchStream(this.props.match.params.id)
+        this.props.fetchStream(this.props.match.params.id)
+        
     };
 
     renderActions = () => {
+      
         const id = this.props.match.params.id;
-        return (
-            <div>
-                <button onClick={() => this.props.deleteStream(id)} className="ui negative button">Delete</button>
-                <Link to="/" className="ui button">Cancel</Link>
-            </div>
-        );
+        if (this.props.stream) {
+            return (
+          
+                <div>
+                    <button onClick={() => {
+                    
+                        this.props.deleteStream(id)
+                      
+                    }
+                    }
+                    
+                        className="ui negative button">Delete</button>
+                    <Link to="/" className="ui button">Cancel</Link>
+                </div>
+            );
+        } 
     };
 
     renderContent() {

@@ -12,11 +12,26 @@ class StreamShow extends React.Component{
     render() {
 
         if (this.props.stream) {
-            const { title, description } = this.props.stream;
+            const { title, description, ingredients, methods, fileName } = this.props.stream;
             return <div>
         <div>
                     <h1>{title}</h1> 
+                    {fileName ? <img src={require(`../../../public/uploads/${fileName}`)} className="ui large rounded floated left image " alt={fileName} /> : <i className="large middle aligned icon camera"></i>}
                     <h5>{description}</h5>
+                    <h5>Ingredients:</h5>
+                    <div>
+                    {ingredients && ingredients.map((ingredient) => {
+                        return <li>
+                            {ingredient}
+                        </li>
+                    })}
+                    </div>
+                    <h5>Steps:</h5>
+                    {methods && methods.map((method) => {
+                        return <li>
+                            {method}
+                        </li>
+                    })}
                 </div>
             </div>
         } else {

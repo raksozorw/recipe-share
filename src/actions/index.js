@@ -4,7 +4,8 @@ import {
     FETCH_STREAMS,
     FETCH_STREAM,
     DELETE_STREAM,
-    EDIT_STREAM
+    EDIT_STREAM,
+    UPLOAD_PHOTO
 }
     from './types';
 import streams from '../apis/streams'
@@ -24,10 +25,27 @@ export const signOut = () => {
     };
 }
 
+export const uploadPhoto = (photoName) => {
+    return {
+        type: UPLOAD_PHOTO,
+        payload: photoName
+    };
+}
+
+// router.post('/recipe', RecipeCtrl.createRecipe)
+// router.put('/recipe/:id', RecipeCtrl.updateRecipe)
+// router.delete('/recipe/:id', RecipeCtrl.deleteRecipe)
+// router.get('/recipe/:id', RecipeCtrl.getRecipeById)
+// router.get('/recipes', RecipeCtrl.getRecipes)
+
 export const createStream = formValues => async (dispatch, getState) => {
     const { userId } = getState().auth;
-    const response = await streams.post('/streams', { ...formValues, userId});
-    dispatch({ type: CREATE_STREAM, payload: response.data });
+    const response = await streams.post('/recipe', { ...formValues, userId })
+    if (response.data.data) {
+        dispatch({ type: CREATE_STREAM, payload: response.data.data })
+        
+    }
+    
     history.push('/')
 };
 
@@ -36,25 +54,37 @@ export const createStream = formValues => async (dispatch, getState) => {
 // we use that response to update our state (action creator -> reducer -> state) it's very roundabout...
 
 export const fetchStreams = () => async dispatch => {
-    const response = await streams.get('/streams');
-    dispatch({ type: FETCH_STREAMS, payload: response.data });
+    const response = await streams.get('/recipes');
+    if(response.data.data){
+        dispatch({ type: FETCH_STREAMS, payload: response.data.data });
+    }
 };
 
+//THE MISSING LINK WAS DATA.DATA!!!!
+
 export const fetchStream = (id) => async dispatch => {
-    const response = await streams.get(`/streams/${id}`);
-    dispatch({ type: FETCH_STREAM, payload: response.data })
+    const response = await streams.get(`/recipe/${id}`);
+    if (response.data.data) {
+        dispatch({ type: FETCH_STREAM, payload: response.data.data })
+    }
 };
 
 export const editStream = (id, formValues) => async dispatch => {
-    const response = await streams.patch(`/streams/${id}`, formValues);
-    dispatch({ type: EDIT_STREAM, payload: response.data })
+    const response = await streams.patch(`/recipe/${id}`, formValues)
+    if (response.data) {
+        dispatch({ type: EDIT_STREAM, payload: response.data.recipe })
+        console.log(response.data)
+    }
+    
     history.push('/')
 };
 
 export const deleteStream = (id) => async dispatch => {
-    await streams.delete(`/streams/${id}`);
-    dispatch({ type: DELETE_STREAM, payload: id });
-    history.push('/')
+    const response = await streams.delete(`/recipe/${id}`)
+    console.log(response)
+            dispatch({ type: DELETE_STREAM, payload: id });
+        history.push('/')
+    
 };
 // redux thunk is being used for async actions. The other action creators are very simple and don't
 // invovle making any API requests. Their dispatch is within the connect function. 

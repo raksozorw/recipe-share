@@ -13,10 +13,10 @@ class StreamList extends React.Component {
     renderAdmin(stream) {
         return stream.userId === this.props.currentUserId && (
             <div className="right floated content">
-                <Link to={`streams/edit/${stream.id}`} className='ui button primary'>
+                <Link to={`streams/edit/${stream._id}`} className='ui button primary'>
                     Edit
                </Link>
-                <Link to={`streams/delete/${stream.id}`} className="ui button negative">
+                <Link to={`streams/delete/${stream._id}`} className="ui button negative">
                     Delete
                 </Link> 
 
@@ -27,23 +27,27 @@ class StreamList extends React.Component {
     renderCreate() {
         return this.props.isSignedIn && <div style={{textAlign: 'right'}}>
             <Link to="/streams/new" className="ui button primary">
-                Create Stream
+                New Recipe
             </Link>
             </div>
     };
 
     renderList() {
+        
         return this.props.streams.map(stream => {
             return (
-                <div className="item" key={stream.id}>
+                <div className="item" key={stream._id}>
                      <div>{this.renderAdmin(stream)}</div>
-                    <i className="large middle aligned icon camera"></i>
-                    <div className="content">
-                        <Link to={`/streams/${stream.id}`} className="header"> {stream.title} </Link>
-                        
+
+                        <Link to={`/streams/${stream._id}`} className="header"> <h3>{stream.title}</h3> </Link>
+                        <div className="content">
+                        {stream.fileName ? <img src={require(`../../../public/uploads/${stream.fileName}`)} className="ui small rounded floated left image " alt={stream.fileName} /> : <i className="large middle aligned icon camera"></i>}
                         <div className="description">
                             {stream.description}
                         </div>
+                       
+                        
+                     
                        
                     </div>
                 </div>
@@ -51,11 +55,14 @@ class StreamList extends React.Component {
     })
     };
 
+  
+    
+
     render() {
       
         return (
             <div>
-                <h2>Streams</h2>
+                <h1>Recipes</h1>
                 <div className="ui celled list">
                     {this.renderList()}
                     {this.renderCreate()}
