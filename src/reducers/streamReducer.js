@@ -24,10 +24,9 @@ export default (state = {}, action) => {
         case DELETE_STREAM:
             return _.omit(state, action.payload);
         case UPLOAD_PHOTO:
-            return {...state, photo: action.payload}
+            return { ...state, photo: action.payload }
         default:
             return state
     }
 }
     
-// just need to get this stupid ID

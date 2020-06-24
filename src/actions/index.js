@@ -5,7 +5,7 @@ import {
     FETCH_STREAM,
     DELETE_STREAM,
     EDIT_STREAM,
-    UPLOAD_PHOTO
+    UPLOAD_PHOTO,
 }
     from './types';
 import streams from '../apis/streams'
@@ -32,11 +32,6 @@ export const uploadPhoto = (photoName) => {
     };
 }
 
-// router.post('/recipe', RecipeCtrl.createRecipe)
-// router.put('/recipe/:id', RecipeCtrl.updateRecipe)
-// router.delete('/recipe/:id', RecipeCtrl.deleteRecipe)
-// router.get('/recipe/:id', RecipeCtrl.getRecipeById)
-// router.get('/recipes', RecipeCtrl.getRecipes)
 
 export const createStream = formValues => async (dispatch, getState) => {
     const { userId } = getState().auth;
@@ -46,7 +41,7 @@ export const createStream = formValues => async (dispatch, getState) => {
         
     }
     
-    history.push('/')
+    history.push('/recipes')
 };
 
 //streams.post puts our stream, that is entered through our component form, into our JSON server api
@@ -76,14 +71,14 @@ export const editStream = (id, formValues) => async dispatch => {
         console.log(response.data)
     }
     
-    history.push('/')
+    history.push('/recipes')
 };
 
 export const deleteStream = (id) => async dispatch => {
     const response = await streams.delete(`/recipe/${id}`)
     console.log(response)
             dispatch({ type: DELETE_STREAM, payload: id });
-        history.push('/')
+        history.push('/recipes')
     
 };
 // redux thunk is being used for async actions. The other action creators are very simple and don't

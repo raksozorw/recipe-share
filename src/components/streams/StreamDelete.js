@@ -1,67 +1,77 @@
-import React from 'react'
-import { connect } from 'react-redux';
-import Modal from '../Modal'
-import history from '../../history';
-import { fetchStream, deleteStream } from '../../actions'
-import { Link } from 'react-router-dom';
+//UNNECESSARY CODE NOW 
 
-class StreamDelete extends React.Component {
+// import React from 'react'
+// import { connect } from 'react-redux';
+// import Modal from '../Modal'
+// import RBModal from '../RBModal'
+// import history from '../../history';
+// import { fetchStream, deleteStream } from '../../actions'
+// import { Link } from 'react-router-dom';
 
-    componentDidMount() {
-        this.props.fetchStream(this.props.match.params.id)
+// class StreamDelete extends React.Component {
+
+//     componentDidMount() {
+//         this.props.fetchStream(this.props.match.params.id)
         
-    };
+//     };
 
-    renderActions = () => {
+//     renderActions = () => {
       
-        const id = this.props.match.params.id;
-        if (this.props.stream) {
-            return (
+//         const id = this.props.match.params.id;
+//         if (this.props.stream) {
+//             return (
           
-                <div>
-                    <button onClick={() => {
-                    
-                        this.props.deleteStream(id)
+//                 <div>
+//                     <button onClick={() => {
+                        
+                        
+//                         this.props.deleteStream(id)
                       
-                    }
-                    }
+//                     }
+//                     }
                     
-                        className="ui negative button">Delete</button>
-                    <Link to="/" className="ui button">Cancel</Link>
-                </div>
-            );
-        } 
-    };
+//                         className="btn btn-danger">Delete</button>
+//                     <Link to="/" className="btn btn-outline-secondary">Cancel</Link>
+//                 </div>
+//             );
+//         } 
+//     };
 
-    renderContent() {
-        if (!this.props.stream) {
-            return "Are you sure you want to delete this stream?"
-        }
+//     renderContent() {
+//         if (!this.props.stream) {
+//             return "Are you sure you want to delete this recipe?"
+//         }
 
-        return `Are you sure you want to delete the stream: ${this.props.stream.title}`
-    }; 
+//         return `Are you sure you want to delete the recipe: ${this.props.stream.title}?`
+//     }; 
 
-    render() {
+//     render() {
     
 
-        return (
-            <div>
-                StreamDelete
-                <Modal
-                    header="Delete Stream"
-                    description={this.renderContent()}
-                    content={this.renderActions()}
-                    route="/"
-                    onDismiss={() => history.push('/')}
+//         return (
+//             <div>
+//                 StreamDelete
+//                 {/* <Modal
+//                     header="Delete Stream"
+//                     description={this.renderContent()}
+//                     content={this.renderActions()}
+//                     route="/"
+//                     onDismiss={() => history.push('/')}
 
-                />
-            </div>
-        )
-    }
-};
+//                 /> */}
+//                 <RBModal
+//                     title="Delete Stream"
+//                     description={this.renderContent()}
+//                     content={this.renderActions()}
+//                     onDismiss={() => history.push('/')}
+//                     />
+//             </div>
+//         )
+//     }
+// };
 
-const mapStateToProps = (state, ownProps) => {
-return {stream: state.streams[ownProps.match.params.id], }
-};
+// const mapStateToProps = (state, ownProps) => {
+// return {stream: state.streams[ownProps.match.params.id], }
+// };
 
-export default connect(mapStateToProps, { fetchStream, deleteStream })(StreamDelete);
+// export default connect(mapStateToProps, { fetchStream, deleteStream })(StreamDelete);

@@ -6,3 +6,4 @@ export const FETCH_STREAM = 'FETCH_STREAM'
 export const DELETE_STREAM = 'DELETE_STREAM';
 export const EDIT_STREAM = 'EDIT_STREAM'
 export const UPLOAD_PHOTO = 'UPLOAD_PHOTO'
+export const PREVENT_RELOAD = 'PREVENT_RELOAD'

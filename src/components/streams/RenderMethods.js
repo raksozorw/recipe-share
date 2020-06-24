@@ -7,26 +7,26 @@ const renderMethod = ({ fields },{ error }) => {
       
         
         return (
-            <div className="field">
-                <input { ...input } autoComplete="off"></input>
+            <div className="">
+                <input { ...input } autoComplete="off" className="form-control"></input>
                 <br></br>
                 </div>
         )
     };
         
  
-        return <div className="field container">
+        return <div className="container render-field">
             <label>Enter Method</label>
             <ol>
        
                 {fields.map((method, index) =>
                     <li key={index}>
-                        <div className="ui container grid">
-                            <div className="ten wide column">
+                        <div className="stack-list">
+                            <div className="">
                                 <Field name={method} component={renderMultipleInputs} label="Method"></Field>
                             </div>
-                            <div className="two wide column">
-                        <button className="ui button negative"
+                            <div className="">
+                        <button className="btn btn-danger"
                             type="button"
                             title="Remove Step"
                                     onClick={() => fields.remove(index)}>Remove</button>
@@ -37,7 +37,7 @@ const renderMethod = ({ fields },{ error }) => {
                 )}
                 {error && <li className="error">{error}</li>}
             </ol>
-            <button className="ui button green" type="button" onClick={() => fields.push()}>Add New Method</button>
+            <button className="btn btn-info" type="button" onClick={() => fields.push()}>Add New Method</button>
         </div>
     
 }

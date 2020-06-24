@@ -21,19 +21,19 @@ class StreamEdit extends React.Component {
     render() {
         return (
             !this.props.stream ? <div>loading</div> : <div>
-                <div>
-                    <h3>Edit a Recipe</h3>
+                <div className="create">
+                    <h1>Edit Recipe</h1>
                     <StreamForm
                         initialValues={{
                             title: this.props.stream.title,
                             description: this.props.stream.description,
                             ingredients: this.props.stream.ingredients,
                             methods: this.props.stream.methods,
-                            fileName: this.props.photo
+                            fileName: this.props.stream.fileName
                           
                            
                         }}
-                        onSubmit={this.onSubmit} photo={this.props.photo}/>
+                        onSubmit={this.onSubmit} photo={this.props.stream.fileName ? this.props.stream.fileName :this.props.photo} fileName={this.props.stream.fileName}/>
                 </div>
             </div>
         );

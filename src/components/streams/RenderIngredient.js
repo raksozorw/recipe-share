@@ -1,31 +1,32 @@
 import React from 'react'
 import { Field } from 'redux-form';
 
+
 const renderIngredient = ({ fields },{ input, meta, error }) => {
     
   const renderMultipleInputs = ({input, label, meta}) => { 
         return (
-            <div className="field">
-                <input {...input} autoComplete="off"/>
+            <div>
+                <input {...input} autoComplete="off" className="form-control"/>
                 <br></br>
                 </div>
         )
     };
         
     if (true) {
-        return <div className="field">
+        return <div className="container render-field">
             <label>Enter Ingredients</label>
             <ul>
        
                 {fields.map((ingredient, index) =>
                     <li key={index}>
-                        <div className="ui grid">
-                            <div className="ten wide column">
+                        <div className="container stack-list">
+                            <div className="">
                                 <Field name={ingredient} component={renderMultipleInputs} label="Ingredients"></Field>
                             </div>
                             
-                            <div className="two wide column">
-                        <button className="ui button negative"
+                            <div className="">
+                        <button className="btn btn-danger"
                             type="button"
                             title="Remove Ingredient"
                                     onClick={() => fields.remove(index)}>Remove</button>
@@ -36,7 +37,7 @@ const renderIngredient = ({ fields },{ input, meta, error }) => {
                 )}
                 {error && <li className="error">{error}</li>}
             </ul>
-            <button className="ui button green" type="button" onClick={() => fields.push()}>Add New Ingredient</button>
+            <button className="btn btn-info" type="button" onClick={() => fields.push()}>Add New Ingredient</button>
         </div>
     } else {
         return <div>Error</div>

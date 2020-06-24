@@ -13,11 +13,16 @@ class StreamShow extends React.Component{
 
         if (this.props.stream) {
             const { title, description, ingredients, methods, fileName } = this.props.stream;
-            return <div>
-        <div>
-                    <h1>{title}</h1> 
-                    {fileName ? <img src={require(`../../../public/uploads/${fileName}`)} className="ui large rounded floated left image " alt={fileName} /> : <i className="large middle aligned icon camera"></i>}
-                    <h5>{description}</h5>
+            return <div className="recipe-show">
+                <h1>{title}</h1> 
+        <div className="">
+                    <h4>{description}</h4>
+                    <div className="wrapper container">
+                        <div image-column>
+                    {fileName ? <img src={require(`../../../public/uploads/${fileName}`)} className="recipe-image rounded img-fluid" alt={fileName} /> : <i className=""></i>}
+                        </div>
+                        <div className="text-column">
+                            <div className="ingredients-and-steps">
                     <h5>Ingredients:</h5>
                     <div>
                     {ingredients && ingredients.map((ingredient) => {
@@ -25,13 +30,18 @@ class StreamShow extends React.Component{
                             {ingredient}
                         </li>
                     })}
-                    </div>
+                                </div>
+                            </div>
+                            <div className="ingredients-and-steps">
                     <h5>Steps:</h5>
                     {methods && methods.map((method) => {
                         return <li>
                             {method}
                         </li>
                     })}
+                    </div>
+                    </div>
+                    </div>
                 </div>
             </div>
         } else {
