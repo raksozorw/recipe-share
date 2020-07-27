@@ -35,7 +35,7 @@ const Header = () => {
             <Link
               className='nav-link'
               onClick={() => {
-                history.push("/streams/new");
+                history.push("/recipes/new");
                 window.location.reload();
               }}
             >

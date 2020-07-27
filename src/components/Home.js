@@ -17,7 +17,7 @@ const Home = () => {
             <Link
               className='link'
               onClick={() => {
-                history.push("/streams/new");
+                history.push("/recipes/new");
                 window.location.reload();
               }}
             >
@@ -48,7 +48,7 @@ const Home = () => {
             <Link
               className='link'
               onClick={() => {
-                history.push("/streams/new");
+                history.push("/recipes/new");
                 window.location.reload();
               }}
             >
