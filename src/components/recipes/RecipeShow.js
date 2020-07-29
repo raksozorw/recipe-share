@@ -25,7 +25,7 @@ class RecipeShow extends React.Component {
               <div image-column>
                 {fileName ? (
                   <img
-                    src={require(`../../../public/uploads/${fileName}`)}
+                    src={`https://storage.googleapis.com/recipe-share-images/${fileName}`}
                     className='recipe-image rounded img-fluid'
                     alt={fileName}
                   />

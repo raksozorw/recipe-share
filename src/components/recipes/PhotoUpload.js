@@ -41,6 +41,7 @@ export default function PhotoUpload(props) {
       setUploadedFile({ newFileName, filePath });
       dispatch(uploadPhoto(res.data.fileName));
       console.log(res.data);
+      console.log(uploadedFile);
     } catch (err) {
       if (err.response.status === 500) {
         console.log(err.response);
@@ -56,7 +57,7 @@ export default function PhotoUpload(props) {
         <div className='existing-image container-fluid'>
           <img
             className='the-image'
-            src={require(`../../../public/uploads/${props.photo}`)}
+            src={`https://storage.googleapis.com/recipe-share-images/${props.photo}`}
             alt='your upload'
           ></img>
           <button

@@ -63,7 +63,7 @@ class RecipeList extends React.Component {
                   variant='top'
                   src={
                     recipe.fileName
-                      ? require(`../../../public/uploads/${recipe.fileName}`)
+                      ? `https://storage.googleapis.com/recipe-share-images/${recipe.fileName}`
                       : null
                   }
                 />
